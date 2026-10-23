@@ -7,11 +7,14 @@ echo -n "Enter full name: "
 read name
 echo -n "Enter username: "
 read username
-read -p "Enter the user primary group: " primary_group
+
+sudo useradd -m "${username}" -c "${name}" 
+
+#Add user to a supplement group
+echo -e "\nAdd user to a supplementary group"
 read -p "Enter the group(s) for user to be added to: " groups
 
-sudo useradd -m "${username}" -c "${name}" -g "${primary_group}" -G "${groups}"
-
+sudo usermod "${username}" -G "${groups}" 
 
 #Set Password for user
 echo -e "\nPreapre to set the password for user \n"
