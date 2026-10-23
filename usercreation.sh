@@ -14,7 +14,7 @@ sudo useradd -m "${username}" -c "${name}"
 echo -e "\nAdd user to a supplementary group"
 read -p "Enter the group(s) for user to be added to: " groups
 
-sudo usermod "${username}" -G "${groups}" 
+sudo usermod "${username}" -aG "${groups}" 
 
 #Set Password for user
 echo -e "\nPreapre to set the password for user \n"
