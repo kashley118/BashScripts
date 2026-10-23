@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#Verify the firewall rules
 sudo ufw status numbered
 read -p "Enter the number(s) of UFW rule(s) you want to delete: " choices
 
