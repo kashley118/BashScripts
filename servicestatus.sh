@@ -1,22 +1,23 @@
 #!/bin/bash
+#Verify if a specific service is running and if it is not running, the script will enable it and start running it.
 
 read -p "Enter the Service(s) you want to verify and ensure that it's running: " services
 
 IFS="," read -ra services <<< "${services}"
 
-for services in "${services[@]}"; do
-	if systemctl is-active --quiet "${services}"; then
-		echo "${services} is running"
+for service in "${services[@]}"; do
+	if systemctl is-active --quiet "${service}"; then
+		echo "${service} is running"
 		
 	else
-		echo "${services} are not running and we are going to run them"
-		systemctl enable "${services}"
-		systemctl start "${services}"
-		systemctl is-active "${services}"
-		if systemctl is-active --quiet "${services}"; then
-			echo "${services} has been enabled and is now running"
+		echo "${service} are not running and we are going to run them"
+		systemctl enable "${service}"
+		systemctl start "${service}"
+		systemctl is-active "${service}"
+		if systemctl is-active --quiet "${service}"; then
+			echo "${service} has been enabled and is now running"
 		else
-			echo "${services} failed to start"
+			echo "${service} failed to start"
 		fi
 			
 			
